@@ -1,0 +1,5 @@
+Thanks for using IndentTips!
+
+See the following url to see how to use it:
+
+https://github.com/QS20199/IndentTips_sublime_plugin
