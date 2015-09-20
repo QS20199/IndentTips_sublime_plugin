@@ -13,6 +13,7 @@ class IndentTipsCommand(sublime_plugin.TextCommand):
 
 		# return if selection is not empty
 		if sel_a != sel_b :
+			sublime.status_message("")
 			return
 
 		# return if current line does not have indent
@@ -41,4 +42,4 @@ class IndentTipsCommand(sublime_plugin.TextCommand):
 
 class IndentTipsListener(sublime_plugin.EventListener):
 	def on_selection_modified(self, view):
-		IndentTipsCommand.showTips(self, view, False)
+		IndentTipsCommand.showTips(IndentTipsCommand(self), view, False)
