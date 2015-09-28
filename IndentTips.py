@@ -1,4 +1,5 @@
 import sublime, sublime_plugin
+import re
 
 class IndentTipsCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -35,9 +36,10 @@ class IndentTipsCommand(sublime_plugin.TextCommand):
 					continue
 
 				if indent_str == view.substr(sublime.Region(thisLine.a,thisLine.a+offset)) and indent_str_2 != view.substr(sublime.Region(thisLine.a,thisLine.a+offset+1)) :
+					result = re.sub(r'\s+', " ", view.substr(thisLine))
 					if showInputPanel :
-						sublime.Window.show_quick_panel(sublime.active_window(), [view.substr(thisLine)] , sublime.status_message(view.substr(thisLine)))
-					sublime.status_message(view.substr(thisLine))
+						sublime.Window.show_quick_panel(sublime.active_window(), [result] , sublime.status_message(result))
+					sublime.status_message(result)
 					return
 
 class IndentTipsListener(sublime_plugin.EventListener):
